@@ -21,8 +21,8 @@ window.addEventListener('DOMContentLoaded', () => {
     */
     const t0 = performance.now();
     const doc = document;
-    let navbarList = doc.querySelector('#navbar__list');
-    let sections = doc.querySelectorAll('section');
+    const navbarList = doc.querySelector('#navbar__list');
+    const sections = doc.querySelectorAll('section');
     const options = {
         root: null,
         rootMargin: '0px',
@@ -30,6 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
     };
     let observer = new IntersectionObserver(handleIntersect, options);
     let menuLinks = null;
+    const toggleMenuBtn = document.querySelector('.hamburger');
 
     /**
      * End Global Variables
@@ -130,6 +131,15 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
+    * @description Click handler for menu button
+    * @param {object} e
+    */
+    const toggleMenu = (e) => {
+        toggleMenuBtn.classList.toggle('is-active');
+        navbarList.classList.toggle('responsive');
+    };
+
+    /**
      * End Main Functions
      * Begin Events
      *
@@ -140,4 +150,6 @@ window.addEventListener('DOMContentLoaded', () => {
     // Set sections as active
     const t1 = performance.now();
     console.log(`Performance time: ${t1 - t0} milliseconds.`);
+    // Toggle Menu on Mobile
+    toggleMenuBtn.addEventListener('click', toggleMenu);
 });
